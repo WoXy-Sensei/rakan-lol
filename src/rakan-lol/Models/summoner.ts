@@ -1,9 +1,10 @@
 import Dragon from "./dragon";
 import axios from "axios";
-import Regions from "../Constants/regions.enum";
-import RiotApiConfig from "../RiotApiConfig";
+import {Regions} from "../Constants/regions.enum";
+import {RiotApiConfig} from "../RiotApiConfig";
 import Rank from "./rank";
-import QueueType from "../Constants/queueType.enum";
+import {QueueType} from "../Constants/queueType.enum";
+import CahmpionMastery from "./championMastery";
 
 class Summoner {
   readonly accountid: string;
@@ -13,35 +14,39 @@ class Summoner {
   readonly puuid: string;
   readonly summonerlevel: number;
   readonly region: Regions;
-  readonly ranks: Rank[];
+  private config:RiotApiConfig;
 
   constructor(
     account_id: string,
     icon_id: number,
     summoner_name: string,
-    id: string,
+    summonerId: string,
     puuid: string,
     summoner_level: number,
     region: Regions,
-    ranks: Rank[]
+    config:RiotApiConfig
   ) {
     this.accountid = account_id;
     this.iconid = icon_id;
     this.summonerName = summoner_name;
-    this.summonerId = id;
+    this.summonerId = summonerId;
     this.puuid = puuid;
     this.summonerlevel = summoner_level;
     this.region = region;
-    this.ranks = ranks;
+    this.config = config;
   }
 
   public async getIcon(): Promise<string> {
     return Dragon.findIconById(this.iconid);
   }
 
-  public async getRank(queueType: QueueType): Promise<Rank | any> {
-    const rank = this.ranks.find((rank: Rank) => rank.queueType === queueType);
+  public async getRank(queueType: QueueType): Promise<Rank> {
+    const rank: Rank = await Rank.getRank(this.summonerId,this.region,this.config,queueType);
     return rank;
+  }
+  public async getChampionMastery(): Promise<CahmpionMastery[]> {
+    const cahmpionMastery: CahmpionMastery[] = await CahmpionMastery.getCahmpionMastery(this.summonerId,this.region,this.config)
+    return cahmpionMastery;
   }
 
   static async getSummoner(
@@ -57,7 +62,6 @@ class Summoner {
         `https://${region}.api.riotgames.com/${url}?api_key=${config.Api_key}`
       );
       const data = response.data;
-      const ranks: Rank[] = await Rank.getRanks(data.id, region, config);
 
       const summoner: Summoner = new Summoner(
         data.accountId,
@@ -67,7 +71,7 @@ class Summoner {
         data.puuid,
         data.summonerLevel,
         region,
-        ranks
+        config
       );
       return summoner;
     } catch (error: any) {

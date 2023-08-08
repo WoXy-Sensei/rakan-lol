@@ -6,4 +6,4 @@ class RiotApiConfig {
   }
 }
 
-export default RiotApiConfig;
+export {RiotApiConfig};

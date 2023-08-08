@@ -1,12 +1,12 @@
 import axios from "axios";
-import QueueType from "../Constants/queueType.enum";
-import Regions from "../Constants/regions.enum";
-import RiotApiConfig from "../RiotApiConfig";
+import {QueueType} from "../Constants/queueType.enum";
+import {Regions} from "../Constants/regions.enum";
+import {RiotApiConfig} from "../RiotApiConfig";
 import Dragon from "./dragon";
 
 class Rank {
   readonly leagueId: string;
-  queueType: QueueType | null;
+  readonly queueType: QueueType  ;
   readonly tier: string;
   readonly rank: string;
   readonly leaguePoints: number;
@@ -35,7 +35,7 @@ class Rank {
     return await Dragon.findTierFrameByName(this.tier);
   }
 
-  private static async getRank(
+  public static async getRank(
     summonerId: string,
     region: Regions,
     config: RiotApiConfig,
@@ -74,8 +74,14 @@ class Rank {
     config: RiotApiConfig
   ): Promise<Rank | any> {
     let ranks: Rank[] = [];
-    const rankTypes: QueueType[] = [QueueType.FLEX, QueueType.SOLOQUEUE];
-   
+    const rankTypes:QueueType[] = [QueueType.FLEX, QueueType.SOLOQUEUE];
+
+    for (let index = 0; index < rankTypes.length; index++) {
+      const rankType:QueueType = rankTypes[index];
+      const rank = await this.getRank(summonerId,region,config,rankType)
+      ranks.push(rank);
+    }
+    return ranks
     
   }
 }

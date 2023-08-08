@@ -1,8 +1,10 @@
 {
-  "name": "lolcard",
-  "version": "1.0.0",
+  "name": "rakan-lol",
+  "version": "1.0.2",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["/dist"],
   "scripts": {
     "start": "ts-node index.ts",
     "build": "tsc"

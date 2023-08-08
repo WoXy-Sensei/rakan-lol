@@ -17,4 +17,4 @@ enum Regions{
     VN = 'VN2'
 }
 
-export default Regions;
+export {Regions};

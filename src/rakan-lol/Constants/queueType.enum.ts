@@ -3,4 +3,4 @@ enum QueueType{
     FLEX = "RANKED_FLEX_SR"
 }
 
-export default QueueType;
+export {QueueType};
