@@ -1,2 +1,2 @@
-export { QueueType } from "./queueType.enum";
-export { Regions } from "./regions.enum";
+export { Regions } from './regions.enum';
+export { QueueType } from './queueType.enum';
