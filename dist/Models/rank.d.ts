@@ -14,4 +14,4 @@ declare class Rank {
     static getRank(summonerId: string, region: Regions, config: RiotApiConfig, queueType: QueueType): Promise<Rank | any>;
     static getRanks(summonerId: string, region: Regions, config: RiotApiConfig): Promise<Rank | any>;
 }
-export default Rank;
+export { Rank };

@@ -27,7 +27,7 @@ class RiotApi {
      */
     getRankById(summonerId, region, queueType) {
         return __awaiter(this, void 0, void 0, function* () {
-            const rank = yield rank_1.default.getRank(summonerId, region, this.riotcConfig, queueType);
+            const rank = yield rank_1.Rank.getRank(summonerId, region, this.riotcConfig, queueType);
             return rank;
         });
     }
@@ -39,7 +39,7 @@ class RiotApi {
      */
     getChampionMasteryById(summonerId, region) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cahmpionMastery = yield championMastery_1.default.getCahmpionMastery(summonerId, region, this.riotcConfig);
+            const cahmpionMastery = yield championMastery_1.CahmpionMastery.getCahmpionMastery(summonerId, region, this.riotcConfig);
             return cahmpionMastery;
         });
     }
@@ -50,7 +50,7 @@ class RiotApi {
      */
     getChampionByKey(key) {
         return __awaiter(this, void 0, void 0, function* () {
-            return champion_1.default.getChampion("key", key);
+            return champion_1.Champion.getChampion("key", key);
         });
     }
     /**
@@ -60,7 +60,7 @@ class RiotApi {
      */
     getChampionByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            return champion_1.default.getChampion("name", name);
+            return champion_1.Champion.getChampion("name", name);
         });
     }
     /**
@@ -71,7 +71,7 @@ class RiotApi {
      */
     getSummonerByName(summonerName, region) {
         return __awaiter(this, void 0, void 0, function* () {
-            const summoner = yield summoner_1.default.getSummoner(summonerName, region, "/by-name", this.riotcConfig);
+            const summoner = yield summoner_1.Summoner.getSummoner(summonerName, region, "/by-name", this.riotcConfig);
             return summoner;
         });
     }
@@ -83,7 +83,7 @@ class RiotApi {
      */
     getSummonerById(summonerId, region) {
         return __awaiter(this, void 0, void 0, function* () {
-            const summoner = yield summoner_1.default.getSummoner(summonerId, region, "", this.riotcConfig);
+            const summoner = yield summoner_1.Summoner.getSummoner(summonerId, region, "", this.riotcConfig);
             return summoner;
         });
     }

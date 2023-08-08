@@ -1,6 +1,6 @@
 import { Regions } from "../Constants/regions.enum";
 import { RiotApiConfig } from "../RiotApiConfig";
-import Champion from "./champion";
+import { Champion } from "./champion";
 declare class CahmpionMastery {
     readonly championLevel: number;
     readonly championPoints: number;
@@ -14,4 +14,4 @@ declare class CahmpionMastery {
     getCahmpion(): Promise<Champion>;
     static getCahmpionMastery(summonerId: string, region: Regions, config: RiotApiConfig): Promise<CahmpionMastery[] | any>;
 }
-export default CahmpionMastery;
+export { CahmpionMastery };

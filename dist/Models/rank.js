@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Rank = void 0;
 const axios_1 = require("axios");
 const queueType_enum_1 = require("../Constants/queueType.enum");
 const dragon_1 = require("./dragon");
@@ -57,5 +58,5 @@ class Rank {
         });
     }
 }
-exports.default = Rank;
+exports.Rank = Rank;
 //# sourceMappingURL=rank.js.map

@@ -33,4 +33,4 @@ class Champion{
     
 }
     
-export default Champion;
+export {Champion};

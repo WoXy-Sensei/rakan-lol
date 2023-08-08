@@ -10,4 +10,4 @@ declare class Champion {
     getIcon(): Promise<string>;
     static getChampion(key: string, value: any): Promise<Champion>;
 }
-export default Champion;
+export { Champion };

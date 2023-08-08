@@ -2,9 +2,9 @@ import Dragon from "./dragon";
 import axios from "axios";
 import {Regions} from "../Constants/regions.enum";
 import {RiotApiConfig} from "../RiotApiConfig";
-import Rank from "./rank";
+import {Rank} from "./rank";
 import {QueueType} from "../Constants/queueType.enum";
-import CahmpionMastery from "./championMastery";
+import {CahmpionMastery} from "./championMastery";
 
 class Summoner {
   readonly accountid: string;
@@ -80,4 +80,4 @@ class Summoner {
   }
 }
 
-export default Summoner;
+export {Summoner};

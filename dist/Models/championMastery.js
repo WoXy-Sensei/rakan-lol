@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CahmpionMastery = void 0;
 const axios_1 = require("axios");
 const champion_1 = require("./champion");
 class CahmpionMastery {
@@ -24,7 +25,7 @@ class CahmpionMastery {
     }
     getCahmpion() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield champion_1.default.getChampion("key", this.championId);
+            return yield champion_1.Champion.getChampion("key", this.championId);
         });
     }
     static getCahmpionMastery(summonerId, region, config) {
@@ -44,5 +45,5 @@ class CahmpionMastery {
         });
     }
 }
-exports.default = CahmpionMastery;
+exports.CahmpionMastery = CahmpionMastery;
 //# sourceMappingURL=championMastery.js.map

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Summoner = void 0;
 const dragon_1 = require("./dragon");
 const axios_1 = require("axios");
 const rank_1 = require("./rank");
@@ -32,13 +33,13 @@ class Summoner {
     }
     getRank(queueType) {
         return __awaiter(this, void 0, void 0, function* () {
-            const rank = yield rank_1.default.getRank(this.summonerId, this.region, this.config, queueType);
+            const rank = yield rank_1.Rank.getRank(this.summonerId, this.region, this.config, queueType);
             return rank;
         });
     }
     getChampionMastery() {
         return __awaiter(this, void 0, void 0, function* () {
-            const cahmpionMastery = yield championMastery_1.default.getCahmpionMastery(this.summonerId, this.region, this.config);
+            const cahmpionMastery = yield championMastery_1.CahmpionMastery.getCahmpionMastery(this.summonerId, this.region, this.config);
             return cahmpionMastery;
         });
     }
@@ -57,5 +58,5 @@ class Summoner {
         });
     }
 }
-exports.default = Summoner;
+exports.Summoner = Summoner;
 //# sourceMappingURL=summoner.js.map

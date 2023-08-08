@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Champion = void 0;
 const dragon_1 = require("./dragon");
 class Champion {
     constructor(id, key, name, title, blurb, tags, partype) {
@@ -33,5 +34,5 @@ class Champion {
         });
     }
 }
-exports.default = Champion;
+exports.Champion = Champion;
 //# sourceMappingURL=champion.js.map

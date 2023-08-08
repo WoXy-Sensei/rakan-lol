@@ -1,7 +1,7 @@
 import axios from "axios";
 import {Regions} from "../Constants/regions.enum";
 import {RiotApiConfig} from "../RiotApiConfig";
-import Champion from "./champion";
+import {Champion} from "./champion";
 
 class CahmpionMastery {
   readonly championLevel: number;
@@ -58,4 +58,4 @@ class CahmpionMastery {
   }
 }
 
-export default CahmpionMastery;
+export {CahmpionMastery};

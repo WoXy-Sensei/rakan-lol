@@ -1,8 +1,8 @@
 import { Regions } from "../Constants/regions.enum";
 import { RiotApiConfig } from "../RiotApiConfig";
-import Rank from "./rank";
+import { Rank } from "./rank";
 import { QueueType } from "../Constants/queueType.enum";
-import CahmpionMastery from "./championMastery";
+import { CahmpionMastery } from "./championMastery";
 declare class Summoner {
     readonly accountid: string;
     readonly iconid: number;
@@ -18,4 +18,4 @@ declare class Summoner {
     getChampionMastery(): Promise<CahmpionMastery[]>;
     static getSummoner(summonerName: string, region: Regions, how: string, config: RiotApiConfig): Promise<Summoner | any>;
 }
-export default Summoner;
+export { Summoner };

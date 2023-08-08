@@ -1,10 +1,10 @@
 import { Regions } from "./Constants/regions.enum";
 import { RiotApiConfig } from "./RiotApiConfig";
-import Summoner from "./Models/summoner";
-import Champion from "./Models/champion";
-import Rank from "./Models/rank";
+import { Summoner } from "./Models/summoner";
+import { Champion } from "./Models/champion";
+import { Rank } from "./Models/rank";
 import { QueueType } from "./Constants/queueType.enum";
-import CahmpionMastery from "./Models/championMastery";
+import { CahmpionMastery } from "./Models/championMastery";
 declare class RiotApi {
     riotcConfig: RiotApiConfig;
     constructor(riotConfig: RiotApiConfig);
