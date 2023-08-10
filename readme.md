@@ -53,8 +53,9 @@ async function init(){
     
 }   
 ```
-
-
 ## License
 
 This project is open-source and licensed under the MIT License. For more details, please see the "LICENSE" file.
+
+![Rakan-lol](https://media.tenor.com/hD8Amv1_H5EAAAAd/rakan-cute.gif)
+
