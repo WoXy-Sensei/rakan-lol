@@ -12,7 +12,7 @@
 ## Installation
 
 ```bash
-npm install rakan-lol
+npm install rakan-lol.js
 ```
 
 ##Getting Started
