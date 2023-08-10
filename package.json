@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Rakan-lol is a TypeScript library designed to streamline the usage of the Riot Games API for League of Legends developers. This library provides easy-to-use functions to interact with the API and retrieve game-related data.",
   "keywords": ["riot","api","lol","game api","typescript"],
+  "repository": {
+    "url": "https://github.com/WoXy-Sensei/rakan-lol",
+    "type": "git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
