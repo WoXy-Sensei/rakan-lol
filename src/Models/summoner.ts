@@ -1,10 +1,10 @@
-import Dragon from "./dragon";
-import axios from "axios";
 import {Regions} from "../Constants/regions.enum";
-import {RiotApiConfig} from "../RiotApiConfig";
-import {Rank} from "./rank";
 import {QueueType} from "../Constants/queueType.enum";
 import {CahmpionMastery} from "./championMastery";
+import { League } from "./league";
+import LeagueService from "../services/league";
+import ChampionMasteryService from "../services/championMastery";
+import DragonService from "../services/dragon";
 
 class Summoner {
   readonly accountid: string;
@@ -14,7 +14,6 @@ class Summoner {
   readonly puuid: string;
   readonly summonerlevel: number;
   readonly region: Regions;
-  private config:RiotApiConfig;
 
   constructor(
     account_id: string,
@@ -24,7 +23,6 @@ class Summoner {
     puuid: string,
     summoner_level: number,
     region: Regions,
-    config:RiotApiConfig
   ) {
     this.accountid = account_id;
     this.iconid = icon_id;
@@ -33,50 +31,19 @@ class Summoner {
     this.puuid = puuid;
     this.summonerlevel = summoner_level;
     this.region = region;
-    this.config = config;
   }
 
   public async getIcon(): Promise<string> {
-    return Dragon.findIconById(this.iconid);
+    return DragonService.findIconById(this.iconid);
   }
 
-  public async getRank(queueType: QueueType): Promise<Rank> {
-    const rank: Rank = await Rank.getRank(this.summonerId,this.region,this.config,queueType);
-    return rank;
+  public async getLeague(queueType: QueueType): Promise<League> {
+    const league: League = await LeagueService.getLeague(this.summonerId,this.region,queueType);
+    return league;
   }
   public async getChampionMastery(): Promise<CahmpionMastery[]> {
-    const cahmpionMastery: CahmpionMastery[] = await CahmpionMastery.getCahmpionMastery(this.summonerId,this.region,this.config)
+    const cahmpionMastery: CahmpionMastery[] = await ChampionMasteryService.getCahmpionMastery(this.summonerId,this.region)
     return cahmpionMastery;
-  }
-
-  static async getSummoner(
-    summonerName: string,
-    region: Regions,
-    how: string,
-    config: RiotApiConfig
-  ): Promise<Summoner | any> {
-    const url: string = `lol/summoner/v4/summoners${how}/${summonerName}`;
-
-    try {
-      const response = await axios.get(
-        `https://${region}.api.riotgames.com/${url}?api_key=${config.Api_key}`
-      );
-      const data = response.data;
-
-      const summoner: Summoner = new Summoner(
-        data.accountId,
-        data.profileIconId,
-        data.name,
-        data.id,
-        data.puuid,
-        data.summonerLevel,
-        region,
-        config
-      );
-      return summoner;
-    } catch (error: any) {
-      console.error("Error:", error);
-    }
   }
 }
 

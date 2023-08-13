@@ -1,9 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RiotApiConfig = void 0;
+const dotenv = require("dotenv");
+dotenv.config();
 class RiotApiConfig {
-    constructor(api_key) {
-        this.Api_key = api_key;
+    static setApiKey(api_key) {
+        process.env['api_key'] = api_key;
+    }
+    static getApiKey() {
+        return process.env['api_key'];
     }
 }
 exports.RiotApiConfig = RiotApiConfig;

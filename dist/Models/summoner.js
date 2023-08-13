@@ -10,12 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Summoner = void 0;
-const dragon_1 = require("./dragon");
-const axios_1 = require("axios");
-const rank_1 = require("./rank");
-const championMastery_1 = require("./championMastery");
+const league_1 = require("../services/league");
+const championMastery_1 = require("../services/championMastery");
+const dragon_1 = require("../services/dragon");
 class Summoner {
-    constructor(account_id, icon_id, summoner_name, summonerId, puuid, summoner_level, region, config) {
+    constructor(account_id, icon_id, summoner_name, summonerId, puuid, summoner_level, region) {
         this.iconid = NaN;
         this.accountid = account_id;
         this.iconid = icon_id;
@@ -24,37 +23,22 @@ class Summoner {
         this.puuid = puuid;
         this.summonerlevel = summoner_level;
         this.region = region;
-        this.config = config;
     }
     getIcon() {
         return __awaiter(this, void 0, void 0, function* () {
             return dragon_1.default.findIconById(this.iconid);
         });
     }
-    getRank(queueType) {
+    getLeague(queueType) {
         return __awaiter(this, void 0, void 0, function* () {
-            const rank = yield rank_1.Rank.getRank(this.summonerId, this.region, this.config, queueType);
-            return rank;
+            const league = yield league_1.default.getLeague(this.summonerId, this.region, queueType);
+            return league;
         });
     }
     getChampionMastery() {
         return __awaiter(this, void 0, void 0, function* () {
-            const cahmpionMastery = yield championMastery_1.CahmpionMastery.getCahmpionMastery(this.summonerId, this.region, this.config);
+            const cahmpionMastery = yield championMastery_1.default.getCahmpionMastery(this.summonerId, this.region);
             return cahmpionMastery;
-        });
-    }
-    static getSummoner(summonerName, region, how, config) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `lol/summoner/v4/summoners${how}/${summonerName}`;
-            try {
-                const response = yield axios_1.default.get(`https://${region}.api.riotgames.com/${url}?api_key=${config.Api_key}`);
-                const data = response.data;
-                const summoner = new Summoner(data.accountId, data.profileIconId, data.name, data.id, data.puuid, data.summonerLevel, region, config);
-                return summoner;
-            }
-            catch (error) {
-                console.error("Error:", error);
-            }
         });
     }
 }

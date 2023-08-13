@@ -1,1 +1,1 @@
-{"version":3,"file":"RiotApiConfig.js","sourceRoot":"","sources":["../src/RiotApiConfig.ts"],"names":[],"mappings":";;;AAAA,MAAM,aAAa;IAGjB,YAAY,OAAe;QACzB,IAAI,CAAC,OAAO,GAAG,OAAO,CAAC;IACzB,CAAC;CACF;AAEO,sCAAa"}
+{"version":3,"file":"RiotApiConfig.js","sourceRoot":"","sources":["../src/RiotApiConfig.ts"],"names":[],"mappings":";;;AAAA,iCAAiC;AACjC,MAAM,CAAC,MAAM,EAAE,CAAC;AAChB,MAAM,aAAa;IACjB,MAAM,CAAC,SAAS,CAAC,OAAc;QAC7B,OAAO,CAAC,GAAG,CAAC,SAAS,CAAC,GAAG,OAAO,CAAC;IACnC,CAAC;IACD,MAAM,CAAC,SAAS;QACd,OAAO,OAAO,CAAC,GAAG,CAAC,SAAS,CAAC,CAAA;IAC/B,CAAC;CAEF;AAEO,sCAAa"}

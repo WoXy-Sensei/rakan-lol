@@ -14,11 +14,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RiotApiConfig = exports.RiotApi = void 0;
-var RiotApi_1 = require("./RiotApi");
-Object.defineProperty(exports, "RiotApi", { enumerable: true, get: function () { return RiotApi_1.RiotApi; } });
+exports.RiotApi = exports.RiotApiConfig = void 0;
 var RiotApiConfig_1 = require("./RiotApiConfig");
 Object.defineProperty(exports, "RiotApiConfig", { enumerable: true, get: function () { return RiotApiConfig_1.RiotApiConfig; } });
+var RiotApi_1 = require("./RiotApi");
+Object.defineProperty(exports, "RiotApi", { enumerable: true, get: function () { return RiotApi_1.RiotApi; } });
 __exportStar(require("./Constants"), exports);
 __exportStar(require("./Models"), exports);
 //# sourceMappingURL=index.js.map

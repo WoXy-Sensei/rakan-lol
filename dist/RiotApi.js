@@ -10,14 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RiotApi = void 0;
-const summoner_1 = require("./Models/summoner");
-const champion_1 = require("./Models/champion");
-const rank_1 = require("./Models/rank");
-const championMastery_1 = require("./Models/championMastery");
+const league_1 = require("./services/league");
+const championMastery_1 = require("./services/championMastery");
+const dragon_1 = require("./services/dragon");
+const summoner_1 = require("./services/summoner");
 class RiotApi {
-    constructor(riotConfig) {
-        this.riotcConfig = riotConfig;
-    }
     /**
      *
      * @param summonerId
@@ -25,10 +22,10 @@ class RiotApi {
      * @param queueType
      * @returns
      */
-    getRankById(summonerId, region, queueType) {
+    getLeagueBySummonerId(summonerId, region, queueType) {
         return __awaiter(this, void 0, void 0, function* () {
-            const rank = yield rank_1.Rank.getRank(summonerId, region, this.riotcConfig, queueType);
-            return rank;
+            const league = yield league_1.default.getLeague(summonerId, region, queueType);
+            return league;
         });
     }
     /**
@@ -39,18 +36,18 @@ class RiotApi {
      */
     getChampionMasteryById(summonerId, region) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cahmpionMastery = yield championMastery_1.CahmpionMastery.getCahmpionMastery(summonerId, region, this.riotcConfig);
+            const cahmpionMastery = yield championMastery_1.default.getCahmpionMastery(summonerId, region);
             return cahmpionMastery;
         });
     }
     /**
      *
-     * @param key
+     * @param id
      * @returns
      */
-    getChampionByKey(key) {
+    getChampionById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return champion_1.Champion.getChampion("key", key);
+            return dragon_1.default.findChampionById(id);
         });
     }
     /**
@@ -60,7 +57,7 @@ class RiotApi {
      */
     getChampionByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            return champion_1.Champion.getChampion("name", name);
+            return dragon_1.default.findChampionByName(name);
         });
     }
     /**
@@ -71,7 +68,7 @@ class RiotApi {
      */
     getSummonerByName(summonerName, region) {
         return __awaiter(this, void 0, void 0, function* () {
-            const summoner = yield summoner_1.Summoner.getSummoner(summonerName, region, "/by-name", this.riotcConfig);
+            const summoner = yield summoner_1.default.getSummonerByName(summonerName, region);
             return summoner;
         });
     }
@@ -83,7 +80,7 @@ class RiotApi {
      */
     getSummonerById(summonerId, region) {
         return __awaiter(this, void 0, void 0, function* () {
-            const summoner = yield summoner_1.Summoner.getSummoner(summonerId, region, "", this.riotcConfig);
+            const summoner = yield summoner_1.default.getSummonerById(summonerId, region);
             return summoner;
         });
     }

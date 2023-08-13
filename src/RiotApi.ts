@@ -1,19 +1,15 @@
 import {Regions} from "./Constants/regions.enum";
-import {RiotApiConfig} from "./RiotApiConfig";
 import {Summoner} from "./Models/summoner";
-import {Champion} from "./Models/champion";
-import {Rank} from "./Models/rank";
+import {League} from "./Models/league";
 import {QueueType} from "./Constants/queueType.enum";
 import {CahmpionMastery} from "./Models/championMastery";
+import LeagueService from "./services/league";
+import ChampionMasteryService from "./services/championMastery";
+import DragonService from "./services/dragon";
+import SummonerService from "./services/summoner";
 
 
 class RiotApi {
-  riotcConfig: RiotApiConfig;
-
-  constructor(riotConfig: RiotApiConfig) {
-    this.riotcConfig = riotConfig;
-  }
-
   /**
    * 
    * @param summonerId 
@@ -21,9 +17,9 @@ class RiotApi {
    * @param queueType 
    * @returns 
    */
-  async getRankById(summonerId:string,region:Regions,queueType:QueueType) : Promise<Rank>{
-    const rank: Rank = await Rank.getRank(summonerId,region,this.riotcConfig,queueType);
-    return rank;
+  async getLeagueBySummonerId(summonerId:string,region:Regions,queueType:QueueType) : Promise<League>{
+    const league: League = await LeagueService.getLeague(summonerId,region,queueType);
+    return league;
   }
 
   /**
@@ -33,17 +29,17 @@ class RiotApi {
    * @returns 
    */
   async getChampionMasteryById(summonerId:string,region:Regions) : Promise<CahmpionMastery[]>{
-    const cahmpionMastery: CahmpionMastery[] = await CahmpionMastery.getCahmpionMastery(summonerId,region,this.riotcConfig)
+    const cahmpionMastery: CahmpionMastery[] = await ChampionMasteryService.getCahmpionMastery(summonerId,region)
     return cahmpionMastery;
   }
 
   /**
    * 
-   * @param key 
+   * @param id 
    * @returns 
    */
-  async getChampionByKey(key:number) : Promise<Champion>{
-    return Champion.getChampion("key",key);
+  async getChampionById(id:number) : Promise<object>{
+    return DragonService.findChampionById(id);
   }
 
   /**
@@ -51,8 +47,8 @@ class RiotApi {
    * @param name 
    * @returns 
    */
-  async getChampionByName(name:string) : Promise<Champion>{
-    return Champion.getChampion("name",name)
+  async getChampionByName(name:string) : Promise<object>{
+    return DragonService.findChampionByName(name);
   }
   
   /**
@@ -62,7 +58,7 @@ class RiotApi {
    * @returns 
    */
   async getSummonerByName(summonerName: string, region: Regions): Promise<Summoner>{
-    const summoner:Summoner = await Summoner.getSummoner(summonerName,region,"/by-name",this.riotcConfig);
+    const summoner:Summoner = await SummonerService.getSummonerByName(summonerName,region);
     return summoner
   }
 
@@ -73,7 +69,7 @@ class RiotApi {
    * @returns 
    */
   async getSummonerById(summonerId: string, region: Regions): Promise<Summoner>{
-    const summoner:Summoner = await Summoner.getSummoner(summonerId,region,"",this.riotcConfig);
+    const summoner:Summoner = await SummonerService.getSummonerById(summonerId,region);
     return summoner
   }
 

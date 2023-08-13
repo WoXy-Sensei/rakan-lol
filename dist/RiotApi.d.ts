@@ -1,13 +1,9 @@
 import { Regions } from "./Constants/regions.enum";
-import { RiotApiConfig } from "./RiotApiConfig";
 import { Summoner } from "./Models/summoner";
-import { Champion } from "./Models/champion";
-import { Rank } from "./Models/rank";
+import { League } from "./Models/league";
 import { QueueType } from "./Constants/queueType.enum";
 import { CahmpionMastery } from "./Models/championMastery";
 declare class RiotApi {
-    riotcConfig: RiotApiConfig;
-    constructor(riotConfig: RiotApiConfig);
     /**
      *
      * @param summonerId
@@ -15,7 +11,7 @@ declare class RiotApi {
      * @param queueType
      * @returns
      */
-    getRankById(summonerId: string, region: Regions, queueType: QueueType): Promise<Rank>;
+    getLeagueBySummonerId(summonerId: string, region: Regions, queueType: QueueType): Promise<League>;
     /**
      *
      * @param summonerId
@@ -25,16 +21,16 @@ declare class RiotApi {
     getChampionMasteryById(summonerId: string, region: Regions): Promise<CahmpionMastery[]>;
     /**
      *
-     * @param key
+     * @param id
      * @returns
      */
-    getChampionByKey(key: number): Promise<Champion>;
+    getChampionById(id: number): Promise<object>;
     /**
      *
      * @param name
      * @returns
      */
-    getChampionByName(name: string): Promise<Champion>;
+    getChampionByName(name: string): Promise<object>;
     /**
      *
      * @param summonerName

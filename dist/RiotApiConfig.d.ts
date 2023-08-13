@@ -1,5 +1,5 @@
 declare class RiotApiConfig {
-    Api_key: string;
-    constructor(api_key: string);
+    static setApiKey(api_key: string): void;
+    static getApiKey(): string;
 }
 export { RiotApiConfig };

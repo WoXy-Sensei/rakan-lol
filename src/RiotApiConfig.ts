@@ -1,9 +1,13 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 class RiotApiConfig {
-  Api_key: string;
-
-  constructor(api_key: string) {
-    this.Api_key = api_key;
+  static setApiKey(api_key:string){
+    process.env['api_key'] = api_key;
   }
+  static getApiKey(){
+    return process.env['api_key']
+  }
+
 }
 
 export {RiotApiConfig};
